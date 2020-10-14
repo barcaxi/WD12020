@@ -372,8 +372,399 @@ console.log("age = " + age); //concatenation
 - Arrow Functions
 @ulend
 
+
 ---
-...
+@title[Contents]
+### ES6 Functions
+
+@ul[](false)
+- **Default Function Parameters**
+- Function Declarations
+- Function Expressions
+- Arrow Functions
+@ulend
+
+---
+@title[Default Function Parameters]
+### Default Function Parameters
+
+
+```javascript
+<html>  
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+  <script type="text/babel">   
+    function add(x,y) {
+        return x+y;
+    }
+    console.log(add(1,2)); // prints?
+  </script>
+</head>
+</html>
+```
+
+[@fa[external-link]](http://localhost/ES6/default1.html)
+
+---
+@title[Default Function Parameters]
+### Default Function Parameters
+
+
+```javascript
+<html>  
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+  <script type="text/babel">   
+    function add(x,y) {
+        return x+y;
+    }
+    console.log(add()); // prints?
+  </script>
+</head>
+</html>
+```
+
+[@fa[external-link]](http://localhost/ES6/default2.html)
+
+---
+@title[Default Function Parameters]
+### Default Function Parameters
+
+@ul[](false)
+- You can give function parameters default values
+@ulend
+
+```javascript
+<html>  
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+  <script type="text/babel">   
+    function add(x=0,y=0) {
+        return x+y;
+    }
+    console.log(add());    // prints?
+    console.log(add(1,2)); // prints?
+    console.log(add(2)); // prints?
+  </script>
+</head>
+</html>
+```
+[@fa[external-link]](http://localhost/ES6/default3.html)
+
+
+
+---
+
+@title[JavaScript Functions]
+### JavaScript Functions
+
+@ul[](true)
+- JavaScript functions are defined with the ``function`` keyword
+- You can use a function @size[1.5em](declaration) or a function @size[1.5em](expression)
+- For example...
+@ulend
+
+---
+@title[Contents]
+### ES6 Functions
+
+@ul[](false)
+- Default Function Parameters
+- **Function Declarations**
+- **Function Expressions**
+- Arrow Functions
+@ulend
+
+
+---
+@title[Functions Declarations]
+### Function Declarations
+
+@ul[](false)
+- Declared functions have the following syntax:
+@ulend
+
+```javascript
+function add(x,y)
+{
+  return x+y;
+}
+
+var ans = add(1,2); // ans=3
+```
+
+
+---
+@title[Function Expressions]
+### Function Expressions
+
+@ul[](false)
+- Function expressions have the following syntax:
+@ulend
+
+```javascript
+var add = function(x,y)
+{
+  return x+y;
+};
+
+var ans = add(1,2); // ans=3
+```
+
+@ul[](true)
+- The function above is actually an anonymous function assigned to variable ``add``
+@ulend
+
+
+---
+@title[Function Declaration v Expression]
+### Function Declaration v Expression
+
+@ul[](true)
+- They are more @size[1.5em](similar) than different
+- You call them the same way
+- They are just different @size[1.5em](styles) of writing functions
+- But, you'll see function expression style more frequently from here
+- Which one you chose is almost entirely a matter of personal taste
+- But there are some differences...
+@ulend
+
+
+---
+@title[Function Declaration v Expression]
+### Function Declaration v Expression
+
+@ul[](false)
+- Function declarations execute @size[1.5em](before) function calls
+- This works..
+@ulend
+
+```javascript
+console.log(add(1,2)); // OK! add was HOISTED
+
+function add(x,y) { 
+  return x+y;
+}
+```
+@[3-5](1st)
+@[1](2nd)
+@[3-5,1]()
+
+
+@ul[](true)
+- This is known as **hoisting**
+@ulend
+
+[@fa[external-link]](http://localhost/ES6/function2.html)
+
+
+---
+@title[Hoisting]
+### Hoisting
+@ul[](true)
+- JavaScript by default moves all @size[1.5em](declarations) to the top of the current scope
+- This includes variable and function declarations
+- Because of this, JavaScript @size[1.5em](functions) can be called before they are declared
+- and JavaScript @size[1.5em](variables) can be assigned values before they are declared
+- Declarations made with ``let`` or ``const`` are not hoisted!
+ 
+@ulend
+
+
+---
+@title[Function Declaration v Expression]
+### Function Declaration v Expression
+
+@ul[](true)
+- Function expressions execute only when the interpreter reaches them
+- Function expressions have no name - anonymous
+- For example...
+@ulend
+
+```javascript
+console.log(add(1,2)); // ERROR! add not loaded yet
+        
+var add = function (x,y) { 
+  return x+y;
+}
+
+console.log(add(1,2)); // OK! add loaded
+```
+@[1](1st)
+@[1,3-5](2nd)
+@[1,3-5,7](3rd)
+
+@ul[](true)
+- Functions expressions are not hoisted
+@ulend
+
+---
+@title[Contents]
+### ES6 Functions
+
+@ul[](false)
+- Default Function Parameters
+- Function Declarations
+- Function Expressions
+- **Arrow Functions**
+@ulend
+
+
+---
+@title[Arrow Functions]
+### Arrow Functions
+
+@ul[](true)
+- Arrow functions are an @size[1.5em](abbreviated) syntax for function expressions
+- You don't need:
+  - the ``function`` keyword
+  - the ``return`` keyword
+  - the curly brackets
+- It's a new token **=>** 
+- For example, let's look at the ``add()`` function again...
+@ulend
+
+
+---
+@title[Arrow Functions]
+### Arrow Functions
+
+@ul[](false)
+- Regular ``add()`` function expression
+@ulend
+
+```javascript     
+var add = function (x,y) { 
+  return x+y;
+}
+
+console.log(add(1,2));
+```
+
+---
+@title[Arrow Functions]
+### Arrow Functions
+
+@ul[](false)
+- Abbreviated arrow function
+@ulend
+
+```javascript     
+var add = (x,y) => { 
+  return x+y;
+}
+
+console.log(add(1,2));
+```
+@ul[](true)
+- Because this is a single statement function you could further abbreviate to...
+@ulend
+
+[@fa[external-link]](http://localhost/ES6/arrow1.html)
+
+---
+@title[Arrow Functions]
+### Arrow Functions
+
+@ul[](false)
+- Abbreviated arrow function
+@ulend
+
+```javascript     
+var add = (x,y) => x+y;
+
+console.log(add(1,2));
+```
+@ul[](true)
+- I'll continue to use ``return`` and curly braces for clarity
+@ulend
+
+[@fa[external-link]](http://localhost/ES6/arrow2.html)
+
+
+
+---
+@title[Map Function]
+### map Function
+
+@ul[](true)
+- ``map()`` is used with arrays
+- ``map()`` it creates a new array from an existing array using a function
+- Let's see an example...
+@ulend
+
+---
+@title[Map Function]
+### map Function
+
+```javascript     
+var numbers = [1,2,3,4,5];
+
+var sqr = function(num) {
+  return num*num;
+}
+
+var values = numbers.map(sqr);
+console.log(values);
+```
+@[1](numbers array)
+@[1,3-5](function to apply to numbers array)
+@[1,3-5,7](map each numbers value to sqr function)
+@[*]
+
+
+@ul[](true)
+- Often you'll see arrow function syntax used...
+@ulend
+
+[@fa[external-link]](http://localhost/ES6/map1.html)
+
+
+
+
+---
+@title[Map Function]
+### map Function
+
+```javascript     
+var numbers = [1,2,3,4,5];
+
+var values = numbers.map((num) => { return num*num; });
+console.log(values);
+```
+@ul[](true)
+- We could abbreviate more with this...
+@ulend
+
+[@fa[external-link]](http://localhost/ES6/map2.html)
+
+---
+@title[Map Function]
+### map Function
+
+```javascript     
+var numbers = [1,2,3,4,5];
+
+var values = numbers.map(num => num*num);
+console.log(values);
+```
+@ul[](true)
+- This works because it is a single statement function
+- But, I'll use ``return`` and curly braces from here on
+@ulend
+
+[@fa[external-link]](http://localhost/ES6/map3.html)
+
+
+
+---
+@title[Exercise 1]
+### Exercise 1 - Fundamentals
+
+[@fa[external-link]](https://github.com/barcaxi/WD12020/blob/master/ES6/exercises/ES6Ex1.md)
+
+
+
 
 ---?color=black
 @title[Title]
