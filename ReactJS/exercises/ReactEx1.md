@@ -3,9 +3,12 @@
 > Complete ALL the exercises in this section. Ask thomas.devine@lyit.ie for help or post an *Issue* on your GitHub repository.
 
 
-		
+## Part 1 - Create a React Application
 
-## Part 1 - Tour of Project Code
+Create your React application/project following the instructions outlined in the lecture slides.
+
+
+## Part 2 - Tour of Project Code
 
 > Make sure you have the React app running as outlined.
 
@@ -49,7 +52,7 @@ Let's simplify the default code given to us.
 	- the render method that renders the ``App`` component in the ``<div>``
 
 
-## Part 2 - My First React Component
+## Part 3 - My First React Component
 
 1.	In the ``src`` folder create a new file ``HelloWorld.js`` and add our component code below:
 
