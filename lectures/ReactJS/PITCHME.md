@@ -264,9 +264,344 @@ ReactDOM.render(<HelloWorld />,
 [@fa[external-link]](https://github.com/barcaxi/WD12020/blob/master/ReactJS/exercises/ReactEx1.md)
 
 
----
 
-to be continued...
+---
+@title[Contents]
+### Contents
+
+@ol[](false)
+- What is React.js?
+- Why React.js?
+- Setup
+- Your First Component
+- **JSX**
+@olend
+
+
+---
+@title[What is JSX?]
+### What is JSX?
+
+This is JSX
+
+```javascript
+const element = <h1>Hello, world!</h1>;
+```
+
+@ul[](true)
+- It's a syntax extension to JavaScript
+- React recommends using it to render UI components with elements
+- Let's see why you use it...
+@ulend
+
+---
+@title[JSX]
+### JSX
+Previously our first React Component looked like this:
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom'
+
+class HelloWorld extends React.Component {
+  render() {
+    return (
+      <h1>Hello World!</h1>
+    );
+  }
+}
+export default HelloWorld;
+```
+@[7](JSX creates the `<h1>` element)
+@[*]()
+
+@ul[](true)
+- Without JSX we'd have to do this...
+@ulend
+
+
+---
+@title[JSX]
+### JSX
+We'd need to use the [React.createElement()](https://reactjs.org/docs/react-api.html#createelement) function
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom'
+
+class HelloWorld extends React.Component {
+  render() {
+    return React.createElement('<h1>',null,'Hello World!');
+  }
+}
+export default HelloWorld;
+```
+@[6](using createElement() for the `<h1>` element)
+@[*]()
+
+@ul[](true)
+- Code written with JSX is converted to use `React.createElement()` anyway
+- It would be worse for less simple components..
+@ulend
+
+
+---
+@title[JSX]
+
+A not so complex component using JSX
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom'
+
+class HelloWorld extends React.Component {
+  render() {
+    return(
+      <div id="myDiv">
+        <h1>Hello World!</h1>
+      </div>
+    );   
+  }
+}
+export default HelloWorld;
+```
+@[7-10](JSX)
+@[*]()
+
+
+---
+@title[JSX]
+
+Same component using `React.createElement()`
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom'
+
+class HelloWorld extends React.Component {
+  render() {
+    return React.createElement(
+                 '<div>', 
+                 {id: 'myDiv'}, 
+                 React.createElement('h1',
+                                      null,
+                                      'Hello World!'));
+    );
+  }
+}
+export default HelloWorld;
+```
+@[6-11](!JSX)
+@[*]()
+@ul[](true)
+- You can see why using JSX is better
+@ulend
+
+---
+@title[JSX Expressions]
+### JSX Expressions
+
+<!-- With JSX we can use expressions too -->
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom'
+const name='Bob';
+
+class HelloWorld extends React.Component {
+  render() {
+    return(
+      <div id="myDiv">
+        <h1>Hello {name}</h1>
+      </div>
+    );   
+  }
+}
+export default HelloWorld;
+```
+@[3](name is Bob)
+@[3,5-13](will print Hello Bob)
+@[*]()
+
+
+@ul[](true)
+- Expressions can be code that resolves to any value e.g...
+@ulend
+
+---
+@title[JSX Expressions]
+### JSX Expressions
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom'
+
+class HelloWorld extends React.Component {
+  render() {
+    return(
+      <div id="myDiv">
+        <h1>1+2={1+2}</h1>
+      </div> 
+    );   
+  }
+}
+export default HelloWorld;
+```
+@[7-9]()
+@[*]()
+
+@ul[](true)
+- Another example with a function...
+@ulend
+
+---
+@title[JSX Expressions]
+### JSX Expressions
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom'
+
+class HelloWorld extends React.Component {
+  add = (num1,num2) => {return num1+num2;}
+
+  render() {
+    return(
+      <div id="myDiv">
+        <h1>1+2={this.add(1,2)}</h1>
+      </div>
+    );   
+  }
+}
+export default HelloWorld;
+```
+@[4,5,14]()
+@[4,5,14,9-11]()
+@[*]()
+
+
+---
+@title[Contents]
+### Contents
+
+@ol[](false)
+- What is React.js?
+- Why React.js?
+- Setup
+- Your First Component
+- JSX
+- **Component Properties (Props)**
+@olend
+
+---
+@title[Component Properties]
+### Component Properties
+
+@ul[list-bullets-black](true)
+- The previous component `HelloWorld` displayed static content
+- To display a dynamic content use React @size[1.5em](Props)...
+@ulend
+
+
+---
+@title[Component Properties]
+### Component Properties
+
+Component properties (props) are accessible with `this.props` object
+
+```javascript
+class HelloWorld extends React.Component {
+  render() {
+    return (
+      <h1>Hello {this.props.name}</h1>
+    );
+  }
+}
+export default HelloWorld;
+...
+ReactDOM.render(<HelloWorld name="Bob"/>,document.getElementById('root'));
+```
+@[10](pass a name property like this)
+@[10,4](access it with component like this)
+@[*]()
+
+@ul[list-bullets-black](true)
+- Pass multiple properties like this...
+@ulend
+
+
+---
+@title[Component Properties]
+### Component Properties
+
+```javascript
+class HelloWorld extends React.Component {
+  render() {
+    return (
+     <h1>{this.props.name} CU in {this.props.mins} mins</h1>
+    );
+  }
+}
+export default HelloWorld;
+...
+ReactDOM.render(<HelloWorld name="Bob" mins={5} />,document.getElementById('root'));
+```
+@[10](use expression syntax {} for non-string properties)
+@[10,4](access it within a component like this)
+@[*]()
+
+---
+@title[React Function Components]
+### React Function Components
+
+@ul[list-bullets-black](false)
+- We've seen how to create a component with a @size[1.5em](class)
+- We can also create a component with a @size[1.5em](function)
+- For example...
+@ulend
+
+---
+@title[Component Properties]
+### Component Properties
+
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom'
+
+const HelloWorld = function(props) {
+  return(
+    <div>
+     <h1>{props.name} CU in {props.mins} mins</h1>
+    </div>
+  )
+}
+export default HelloWorld;
+...
+ReactDOM.render(<HelloWorld name="Bob" mins={5} />,document.getElementById('root'));
+```
+@[4,10](function declaration)
+@[*](everthing else is the same)
+
+---
+@title[Class Components v Function Components]
+### Class v Function Components
+
+@ul[list-bullets-black](true)
+- You may see component functions elsewhere
+- But I'll use component classes instead, because...
+  - a class component has @size[1.5em](state)
+  - a class component has @size[1.5em](lifecycle hooks)
+- We'll explain this next
+@ulend
+
+
+---
+@title[Exercise]
+### React.js Exercise 2 – React Props
+
+[@fa[external-link]](https://github.com/barcaxi/WD12020/blob/master/ReactJS/exercises/ReactEx2.md)
+
+
 
 
 
